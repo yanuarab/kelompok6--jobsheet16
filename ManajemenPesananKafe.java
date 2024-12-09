@@ -1,8 +1,8 @@
 import java.util.Scanner;
 
 public class ManajemenPesananKafe {
-    static String[] menu = {"Kopi Hitam", "Latte", "Teh Tarik", "Mie Goreng"};
-    static int[] hargaMenu = {15000, 22000, 12000, 18000};
+    static String[] menu = {"Kopi Hitam", "Latte", "Teh Tarik", "Mie Goreng", "Pisang Goreng", "Bala-Bala", "Tahu Isi"};
+    static int[] hargaMenu = {15000, 22000, 12000, 18000, 1000, 1000, 1000};
 
     static String[][] dataPesanan = new String[100][4]; 
     static int jumlahPesanan = 0;
@@ -12,7 +12,8 @@ public class ManajemenPesananKafe {
         int pilihan;
 
         do {
-            System.out.println("===== MENU UTAMA =====");
+            System.out.println("~Selamat Datang di Kedai Ngepunk!~");
+            System.out.println("<<<<< MENU UTAMA >>>>>");
             System.out.println("1. Tambahkan Pesanan");
             System.out.println("2. Tampilkan Daftar Pesanan");
             System.out.println("3. Keluar");
@@ -28,7 +29,7 @@ public class ManajemenPesananKafe {
                     tampilkanDaftarPesanan();
                     break;
                 case 3:
-                    System.out.println("Terima kasih!");
+                    System.out.println("Terima kasih! Sampai Jumpa Kembali!");
                     break;
                 default:
                     System.out.println("Pilihan tidak valid!");
@@ -45,7 +46,7 @@ public class ManajemenPesananKafe {
 
         int totalHarga = 0;
         String detailPesanan = "";
-        System.out.println("===== MENU KAFE =====");
+        System.out.println("<<<<< MENU KAFE >>>>>");
         for (int i = 0; i < menu.length; i++) {
             System.out.println((i + 1) + ". " + menu[i] + " - Rp " + hargaMenu[i]);
         }
@@ -86,14 +87,14 @@ public class ManajemenPesananKafe {
         if (jumlahPesanan == 0) {
             System.out.println("Belum ada pesanan yang tercatat.");
         } else {
-            System.out.println("===== DAFTAR PESANAN =====");
+            System.out.println("<<<<< DAFTAR PESANAN >>>>>");
             for (int i = 0; i < jumlahPesanan; i++) {
                 System.out.println("Nama Pelanggan: " + dataPesanan[i][0]);
                 System.out.println("Nomor Meja: " + dataPesanan[i][1]);
                 System.out.println("Detail Pesanan:");
                 System.out.println(dataPesanan[i][2]);
                 System.out.println("Total Harga Pesanan: Rp " + dataPesanan[i][3]);
-                System.out.println("--------------------------");
+                System.out.println("- - - - - - - - - - - - - - - -");
             }
         }
     }
