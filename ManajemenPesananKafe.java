@@ -1,8 +1,8 @@
 import java.util.Scanner;
 
 public class ManajemenPesananKafe {
-    static String[] menu = {"Kopi Hitam", "Latte", "Teh Tarik", "Mie Goreng", "Pisang Goreng", "Bala-Bala", "Tahu Isi"};
-    static int[] hargaMenu = {15000, 22000, 12000, 18000, 1000, 1000, 1000};
+    static String[] menu = {"Kopi Hitam", "Latte", "Teh Tarik", "Mie Goreng", "Pisang Goreng", "Bala-Bala", "Tahu Isi", "Pop Ice", "Air Mineral"};
+    static int[] hargaMenu = {15000, 22000, 12000, 18000, 1000, 1000, 1000, 3000, 5000};
 
     static String[][] dataPesanan = new String[100][4]; 
     static int jumlahPesanan = 0;
@@ -39,10 +39,22 @@ public class ManajemenPesananKafe {
 
     static void tambahkanPesanan(Scanner scanner) {
         System.out.print("Masukkan nama pelanggan: ");
-        dataPesanan[jumlahPesanan][0] = scanner.nextLine(); 
+        dataPesanan[jumlahPesanan][0] = scanner.nextLine();
+        
+        int noMeja;
 
-        System.out.print("Masukkan nomor meja: ");
-        dataPesanan[jumlahPesanan][1] = scanner.nextLine();
+        while (true) {
+            System.out.print("Masukkan nomor meja: ");
+            noMeja = scanner.nextInt();
+
+            if (noMeja < 1) {
+                System.out.println("Meja harus lebih dari 0!");
+            }else{
+                break;
+            }
+            dataPesanan[jumlahPesanan][1] = scanner.nextLine();
+        } 
+
 
         int totalHarga = 0;
         String detailPesanan = "";
@@ -55,7 +67,7 @@ public class ManajemenPesananKafe {
             System.out.print("Pilih menu (masukkan nomor menu, atau 0 untuk selesai): ");
             int nomorMenu = scanner.nextInt();
 
-            if (nomorMenu == 0) break;
+            if (nomorMenu == 0) break;    
 
             if (nomorMenu < 1 || nomorMenu > menu.length) {
                 System.out.println("Menu tidak valid!");
@@ -70,12 +82,14 @@ public class ManajemenPesananKafe {
                 continue;
             }
 
-            int hargaItem = hargaMenu[nomorMenu - 1] * jumlahItem;
-            detailPesanan += menu[nomorMenu - 1] + " x " + jumlahItem + " = Rp " + hargaItem + "\n";
-
+            int hargaSatuan = hargaMenu[nomorMenu - 1]; 
+            int hargaItem = hargaSatuan * jumlahItem; 
+            detailPesanan += menu[nomorMenu - 1] + " (Rp " + hargaSatuan + ") x " + jumlahItem + " = Rp " + hargaItem + "\n";
+            
             totalHarga += hargaItem;
         }
 
+        dataPesanan[jumlahPesanan][1] = String.valueOf(noMeja); 
         dataPesanan[jumlahPesanan][2] = detailPesanan; 
         dataPesanan[jumlahPesanan][3] = String.valueOf(totalHarga); 
         jumlahPesanan++;
